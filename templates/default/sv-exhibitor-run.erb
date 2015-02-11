@@ -1,0 +1,4 @@
+#!/bin/bash
+exec 2>&1
+exec chpst -e ./env -u <%= node["zookeeper"]["user"] %> \
+  <%= node["exhibitor"]["current_path"] %>/bin/exhibitor

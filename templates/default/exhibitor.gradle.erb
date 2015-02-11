@@ -1,0 +1,10 @@
+apply plugin: 'java'
+repositories { jcenter() }
+dependencies {
+  runtime 'com.netflix.exhibitor:exhibitor-standalone:<%= node["exhibitor"]["version"] %>'
+  runtime 'com.amazonaws:aws-java-sdk:<%= node["exhibitor"]["aws_java_sdk_version"] %>'
+}
+task copyLibs(type: Copy) {
+  into './libs'
+  from configurations.runtime
+}

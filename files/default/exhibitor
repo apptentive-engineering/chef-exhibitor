@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -eo pipefail
+
+join() { local IFS=$1; shift; echo "$*"; }
+
+ROOTPATH=$(realpath "$(dirname "$0")"/..)
+CLASSPATH=$(join : $ROOTPATH/libs/*.jar)
+
+: ${EXHIBITOR_PORT:=8181}
+: ${EXHIBITOR_CONFIG:=$ROOTPATH/config/default.properties}
+
+: ${S3_REGION:=us-east-1}
+: ${S3_BUCKET:?must be set}
+: ${S3_PREFIX:?must be set}
+
+exec java -cp $CLASSPATH com.netflix.exhibitor.application.ExhibitorMain \
+  --port $EXHIBITOR_PORT --defaultconfig $EXHIBITOR_CONFIG --configtype s3 \
+  --s3region $S3_REGION --s3config $S3_BUCKET:$S3_PREFIX --s3backup true \
+  --hostname $HOSTNAME
