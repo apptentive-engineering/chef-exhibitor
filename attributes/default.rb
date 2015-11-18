@@ -1,5 +1,4 @@
-default["exhibitor"]["version"] = "1.5.3"
-default["exhibitor"]["aws_java_sdk_version"] = "1.9.17"
+default["exhibitor"]["version"] = "1.5.5"
 
 default["exhibitor"]["install_root"] = "/opt/exhibitor"
 default["exhibitor"]["current_path"] = "#{node["exhibitor"]["install_root"]}/current"
