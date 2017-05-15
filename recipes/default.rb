@@ -25,6 +25,7 @@
 # THE SOFTWARE.
 #
 
+include_recipe "apptentive_gradle::default"
 include_recipe "apptentive_zookeeper::default"
 
 package "java-1.7.0-openjdk-devel"
